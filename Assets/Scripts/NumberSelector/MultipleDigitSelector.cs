@@ -15,7 +15,8 @@ public class MultipleDigitSelector : MonoBehaviour
 
     void Update()
     {
-
+        //Debug.Log(GetHexValue());
+        //61D
     }
 
 
@@ -35,6 +36,21 @@ public class MultipleDigitSelector : MonoBehaviour
 		}
 
         return value;
+    }
+
+    public string GetHexValue()
+    {
+        string stringValue = "";
+
+        if (digits.Count > 0)
+        {
+            foreach (DigitSelector digit in digits)
+            {
+                stringValue += digit.GetHexValue();
+            }
+        }
+
+        return stringValue;
     }
 
     public void SetValue(int value)

@@ -11,7 +11,6 @@ public class DigitSelector : MonoBehaviour
 	[SerializeField] Image DigitSymbol;
 
     [SerializeField] List<Sprite> symbol;
-    [SerializeField] Dictionary<int, Sprite> symbols;
 
 	private void Start()
 	{
@@ -24,7 +23,36 @@ public class DigitSelector : MonoBehaviour
 		return value;
 	}
 
-	public void SetValue(int value)
+    public string GetHexValue()
+    {
+		string hexValue = value.ToString();
+
+		switch (value)
+		{
+			case 10:
+				hexValue = "A";
+				break;
+			case 11:
+				hexValue = "B";
+				break;
+			case 12:
+				hexValue = "C";
+				break;
+			case 13:
+				hexValue = "D";
+				break;
+			case 14:
+				hexValue = "E";
+				break;
+			case 15:
+				hexValue = "F";
+				break;
+		}
+
+        return hexValue;
+    }
+
+    public void SetValue(int value)
 	{
 		this.value = value;
 		UpdateUI();
@@ -44,10 +72,7 @@ public class DigitSelector : MonoBehaviour
 
 	private void UpdateUI()
 	{
-        Sprite t;
-		symbols.TryGetValue(value, out t);
-
-        DigitSymbol.sprite = t;
+        DigitSymbol.sprite = symbol[value];
 	}
 
 	public void UpButtonClick()
